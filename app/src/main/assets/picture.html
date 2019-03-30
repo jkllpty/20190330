@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>XMLHttpRequest上传文件</title>
+    <style type="text/css">
+        .ui-button {
+            font-size: 18px;
+            color: #ffffff;
+            display: block;
+            background-image: linear-gradient(135deg, #1edc9b 0%, #06b4c6 100%);
+            box-shadow: 0px 2px 3px 0px rgba(23,103,97,0.18);
+            border-radius: 4px;
+            width: 88%;
+            height: 45px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 50px;
+        }
+        .imageface{
+            position: relative;
+            width: 70%;
+            height: 160px;
+            background: #f6f6f6;
+            margin: 44px auto;
+            border-radius: 4px;
+        }
+        #faceimg{
+            position: absolute;
+            width: 100%;
+            height: 160px;
+         
+        }
+        .mes{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -89px;
+            font-family: FZLTXHJW--GB1-0;
+            font-size: 13px;
+            color: #454545;
+        }
+        #num{
+            display: flex;
+            justify-content: center;
+            height: 70px;
+            width: 100%;
+            font-size: 34px;
+            margin-top: 10px;
+        }
+        #num > p{
+            margin: 10px;
+        }
+        #codeButton{
+            margin-top: 30px;
+        }
+        </style>
+</head>
+<body>
+
+<br /><br />
+<div class="imageface" onclick="onPhoto()">
+    <img src="image.png" id="faceimg">
+</div>
+<input type="file" id="file" name="myfile" accept="image/*" capture="camera" style="display: none" onchange="photoCompress()" />
+<div class="ui-button" id="vbutton" onclick="UpladFile()">图片上传</div>
+
+<script type="text/javascript">
+
+        var base64='';
+        function showpicture(){
+            document.getElementById('faceimg').src=this.files[0];
+
+        }
+
+        function onPhoto(){
+            document.getElementById('file').click();
+        }
+        function photoCompress(){
+            var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+            var ready=new FileReader();
+            ready.readAsDataURL(fileObj);
+            ready.onload=function(){
+                var re=this.result;
+                canvasDataURL(re)
+            }
+        }
+        function canvasDataURL(path){
+            var img = new Image();
+            img.src = path;
+            img.onload = function(){
+                var that = this;
+                // 默认按比例压缩
+                var w = that.width,
+                    h = that.height,
+                    scale = w / h;
+                if(w>h){
+                    if(w>1200){
+                        w = 1200;
+                        h = w/scale;
+                    }
+                }else{
+                    if(h>1200){
+                        h = 1200;
+                        w = h*scale;
+                    }
+                }
+                //生成canvas
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                // 创建属性节点
+                var anw = document.createAttribute("width");
+                anw.nodeValue = w;
+                var anh = document.createAttribute("height");
+                anh.nodeValue = h;
+                canvas.setAttributeNode(anw);
+                canvas.setAttributeNode(anh);
+                ctx.drawImage(that, 0, 0, w, h);
+             
+                // quality值越小，所绘制出的图像越模糊
+                base64 = canvas.toDataURL('image/jpeg', 1);
+                // 回调函数返回base64的值
+                document.getElementById('faceimg').src=base64;
+                
+            }
+        }
+
+        function convertBase64UrlToBlob(urlData){
+            var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type:mime});
+        }
+
+
+        var xhr;
+        //上传文件方法
+        function UpladFile() {
+            
+            var url = "后台图片上传接口"; 
+
+            var form = new FormData(); 
+
+            if(base64!=''){
+                //console.log("压缩后：" + base.length / 1024 + " " + base);
+                var bl = convertBase64UrlToBlob(base64);
+                form.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+                xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+                xhr.open("post", url, true); 
+                xhr.onload = uploadComplete; //请求完成
+                xhr.onerror =  uploadFailed; //请求失败
+
+                    
+                xhr.upload.onloadstart = function(){//上传开始执行方法
+                    ot = new Date().getTime();   //设置上传开始时间
+                    oloaded = 0;//设置上传开始时，以上传的文件大小为0
+                };
+
+                xhr.send(form); //开始上传，发送form数据
+            }else{
+                alert('请点击图片进行拍照');
+            }
+           
+        }
+
+        //上传成功响应
+        function uploadComplete(evt) {
+            //服务断接收完文件返回的结果
+
+            var data = JSON.parse(evt.target.responseText);
+            if(data.success) {
+                alert("上传成功！");
+            }else{
+                alert("上传失败！");
+            }
+
+        }
+        //上传失败
+        function uploadFailed(evt) {
+            alert("上传失败！");
+        }
+  
+
+
+    </script>
+</body>
+</html>
