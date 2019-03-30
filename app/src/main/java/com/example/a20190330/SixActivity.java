@@ -39,7 +39,7 @@ public class SixActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_five);
+        setContentView(R.layout.activity_six);
         et = findViewById(R.id.et_2);
 
     }
@@ -47,7 +47,7 @@ public class SixActivity extends AppCompatActivity {
     public void submit(View view) {
         try {
             String input = et.getText().toString().trim();
-            String[] s = input.split(",");
+            String[] s = input.split("，");
             for (int i = 0; i < s.length; i++) {
                 if (Integer.parseInt(s[i]) <= 10) {
                     Toast.makeText(this, String.valueOf(-1), Toast.LENGTH_LONG);
