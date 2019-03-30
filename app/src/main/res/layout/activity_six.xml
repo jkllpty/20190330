@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XML数据规范普遍应用于目前的系统构建中，相应的XML报文的解析也成为大部分业务系统实施中都面临的共性问题。
+
+我们卡中心前置的请求与响应报文也选择XML数据协议进行消息封装与交互，并且前置只是使用了XML规范中元素与属性的子集【Payload中基本不使用属性、支持数组但没有数组嵌套等】就实现了自己的目的。" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请输入数组："
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入示例：1，2，3"
+            android:text="1，2，3" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="submit"
+        android:text="计算" />
+</LinearLayout>
