@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nine(View view) {
+        startActivity(new Intent(this, NineActivity.class));
+
     }
 
     public void ten(View view) {
