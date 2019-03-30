@@ -7,20 +7,20 @@ import java.util.List;
 public class Test03 {
 
 
-    public static void main(String[] args) {
-        int members = 5;
-        int cycle = 3;
-        if (members == 2) {
-            System.out.println(2);
-        }
-        if (members == 3) {
-            System.out.println(1);
-        } else if (members > 3) {
-        int survivor1 = showJoseph(members, cycle);
-        System.out.println(survivor1);
-        }
-
-    }
+//    public static void main(String[] args) {
+//        int members = 5;
+//        int cycle = 3;
+//        if (members == 2) {
+//            System.out.println(2);
+//        }
+//        if (members == 3) {
+//            System.out.println(1);
+//        } else if (members > 3) {
+//        int survivor1 = showJoseph(members, cycle);
+//        System.out.println(survivor1);
+//        }
+//
+//    }
 
 
     private static int showJoseph(int total, int cycle) {
