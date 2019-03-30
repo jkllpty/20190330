@@ -25,6 +25,9 @@ public class FirstActivity extends AppCompatActivity {
         et_1 = findViewById(R.id.et_1_1);
         et_2 = findViewById(R.id.et_2_2);
         tvResult = findViewById(R.id.tv_result);
+
+
+
     }
 
     public void submit(View view) {
