@@ -32,9 +32,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fifth(View view) {
+
+        startActivity(new Intent(this, FiveActivity.class));
+
     }
 
     public void six(View view) {
+        startActivity(new Intent(this, SixActivity.class));
+
     }
 
     public void seven(View view) {
