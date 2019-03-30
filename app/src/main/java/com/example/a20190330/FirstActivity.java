@@ -27,15 +27,23 @@ public class FirstActivity extends AppCompatActivity {
         tvResult = findViewById(R.id.tv_result);
 
 
-
     }
 
     public void submit(View view) {
         try {
             String input1 = et_1.getText().toString().trim();
+            input1 = input1.replace("（", "");
+            input1 = input1.replace("）", "");
+            input1 = input1.replace("->", "，");
+            input1 = input1.replace(" ", "");
+
             String input2 = et_2.getText().toString().trim();
-            String[] nums1 = input1.split("，");
-            String[] nums2 = input2.split("，");
+            input2 = input2.replace("（", "");
+            input2 = input2.replace("）", "");
+            input2 = input2.replace("->", "，");
+            input2 = input2.replace(" ", "");
+            String[] nums1 = input1.trim().split("，");
+            String[] nums2 = input2.trim().split("，");
             int[] intList1 = new int[nums1.length];
             int[] intList2 = new int[nums2.length];
             for (int i = 0; i < intList1.length; i++) {

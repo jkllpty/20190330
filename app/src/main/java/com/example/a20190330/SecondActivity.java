@@ -25,7 +25,7 @@ public class SecondActivity extends AppCompatActivity {
     public void submit(View view) {
         try {
             String input = et.getText().toString().trim();
-            String[] inputArray = input.split("，");
+            String[] inputArray = input.split(" ");
             int[] inputNums = new int[inputArray.length];
             for (int i = 0; i < inputNums.length; i++) {
                 inputNums[i] = Integer.valueOf(inputArray[i]);
