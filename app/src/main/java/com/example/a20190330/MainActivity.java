@@ -22,9 +22,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void third(View view) {
+        startActivity(new Intent(this, ThirdActivity.class));
+
     }
 
     public void fourth(View view) {
+        startActivity(new Intent(this, FourActivity.class));
+
     }
 
     public void fifth(View view) {
