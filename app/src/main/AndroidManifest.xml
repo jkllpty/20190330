@@ -13,6 +13,8 @@
         <activity android:name=".FirstActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".FourActivity" />
+        <activity android:name=".FiveActivity" />
+        <activity android:name=".SixActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
