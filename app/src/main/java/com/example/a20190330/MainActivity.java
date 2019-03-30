@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 //            Uri content_url = Uri.fromFile(new File(path));
             Uri content_url = getUriForFile(this, new File(path));
             intent.setData(content_url);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 //            intent.setClassName("com.android.browser","com.android.browser.BrowserActivity");
 //            intent.setComponent(new ComponentName("com.android.browser", "com.android.browser.BrowserActivity"));
             startActivity(intent);
