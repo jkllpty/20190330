@@ -18,7 +18,7 @@ public class NineActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nine);
-        String[] pyStrs = PinyinHelper.toHanyuPinyinStringArray('重');
+        String[] pyStrs = PinyinHelper.toHanyuPinyinStringArray('刘');
         for (String s : pyStrs) {
             Log.e("pyStrs", s);
         }
